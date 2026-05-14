@@ -24,8 +24,7 @@ jobs:
       - name: Deploy Infrastructure
         uses: azure/arm-deploy@v2
         with:
-          scope: resourcegroup # <--- This is the missing line that fixed the error
-          resourceGroupName: rg-healthbot-e8c755
+          scope: subscription # Change from resourcegroup to subscription
+          region: eastus      # Subscription deployments REQUIRE a region for metadata
           template: ./iac/main.bicep
-          # Ensure your botName matches your previous deployment or Bicep param
-          parameters: botName=healthbot-e8c755
+          parameters: rgName=rg-healthbot-e8c755 botName=healthbot-e8c755

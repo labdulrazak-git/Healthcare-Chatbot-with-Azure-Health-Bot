@@ -1,25 +1,22 @@
-// Professional Bicep template for Health Bot deployment
-param location string = resourceGroup().location
-param botName string = 'healthbot-${uniqueString(resourceGroup().id)}'
+// main.bicep
+targetScope = 'subscription' // CRITICAL: This allows the script to create the RG
 
-@allowed([
-  'F0'
-  'S1'
-])
-param sku string = 'F0'
+param location string = 'eastus'
+param rgName string = 'rg-healthbot-e8c755'
+param botName string = 'healthbot-e8c755'
 
-resource healthBot 'Microsoft.HealthBot/healthBots@2020-12-08' = {
-  name: botName
+// 1. Create the Resource Group
+resource tgResourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+  name: rgName
   location: location
-  sku: {
-    name: sku
-  }
-  properties: {}
-  tags: {
-    environment: 'demo'
-    purpose: 'healthcare-chatbot'
-    framework: 'well-architected'
-  }
 }
 
-output managementPortalUrl string = healthBot.properties.botManagementPortalLink
+// 2. Deploy the Bot into the Resource Group we just created
+module botDeployment './healthbot.bicep' = {
+  name: 'botDeployment'
+  scope: resourceGroup(tgResourceGroup.name) // This tells Bicep to switch context
+  params: {
+    location: location
+    botName: botName
+  }
+}
