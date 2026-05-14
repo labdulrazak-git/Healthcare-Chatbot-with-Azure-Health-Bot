@@ -11,6 +11,16 @@ This repository contains a fully automated, production-ready deployment of the *
 - **Security:** Managed via Entra ID (RBAC) and GitHub Secrets (OIDC/Service Principal).
 - **Runtime:** Azure AI Health Bot (F0 Tier).
 
+### 🗺️ Visual Architecture
+Below is the automated flow from your local machine to the live Azure environment:
+
+```mermaid
+graph TD
+    A[Developer / VS Code] -->|Git Push| B(GitHub Repo)
+    B --> C[GitHub Actions]
+    C -->|Bicep Deployment| D[Azure Subscription]
+    D --> E[Resource Group]
+    E --> F[Azure AI Health Bot]
 
 
 ## 🚀 Key Features
