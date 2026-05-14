@@ -1,6 +1,6 @@
 # 🏥 Azure AI Health Bot: Automated Cloud Infrastructure
 
-![Deploy Status](https://github.com/labdulrazak/Healthcare-Chatbot-with-Azure-Health-Bot/actions/workflows/deploy.yml/badge.svg)
+![Deploy Status](https://github.com/labdulrazak-git/Healthcare-Chatbot-with-Azure-Health-Bot/actions/workflows/deploy.yml/badge.svg)
 
 ## 📋 Project Overview
 This repository contains a fully automated, production-ready deployment of the **Azure Health Bot Service** (Healthcare Agent Service). The project demonstrates a "Zero-Touch" infrastructure approach, where the entire environment—including the Resource Group and the Bot service—is provisioned via code.
