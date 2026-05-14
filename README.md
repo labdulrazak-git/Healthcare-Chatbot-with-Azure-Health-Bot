@@ -23,7 +23,7 @@ graph TD
 
     style F fill:#0072C6,stroke:#fff,stroke-width:2px,color:#fff
     style C fill:#24292e,stroke:#fff,color:#fff
-
+```
 
 ## 🚀 Key Features
 *   **Subscription-Level Automation:** Automatically creates the Resource Group and resources in a single pass.
@@ -45,7 +45,9 @@ graph TD
 
 ### Deployment
 Simply push a change to the `main` branch to trigger the automated deployment:
+
 ```bash
 git add .
 git commit -m "deploy: update infrastructure"
 git push origin main
+```

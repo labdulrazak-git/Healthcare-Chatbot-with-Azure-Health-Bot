@@ -1,4 +1,3 @@
-```markdown
 # Architectural Deep Dive
 
 ```mermaid
@@ -25,3 +24,4 @@ graph TD
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style F fill:#0072C6,stroke:#fff,stroke-width:2px,color:#fff
     style C fill:#24292e,stroke:#fff,color:#fff
+```
