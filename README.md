@@ -12,7 +12,6 @@ This repository contains a fully automated, production-ready deployment of the *
 - **Runtime:** Azure AI Health Bot (F0 Tier).
 
 ### 🗺️ Visual Architecture
-Below is the automated flow from your local machine to the live Azure environment:
 
 ```mermaid
 graph TD
@@ -21,6 +20,9 @@ graph TD
     C -->|Bicep Deployment| D[Azure Subscription]
     D --> E[Resource Group]
     E --> F[Azure AI Health Bot]
+
+    style F fill:#0072C6,stroke:#fff,stroke-width:2px,color:#fff
+    style C fill:#24292e,stroke:#fff,color:#fff
 
 
 ## 🚀 Key Features

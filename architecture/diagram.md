@@ -1,3 +1,7 @@
+```markdown
+# Architectural Deep Dive
+
+```mermaid
 graph TD
     subgraph "GitHub (Source & Automation)"
         A[Developer / VS Code] -->|Push Code| B(GitHub Repository)
