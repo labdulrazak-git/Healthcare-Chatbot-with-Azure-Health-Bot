@@ -1,0 +1,31 @@
+name: Deploy Health Bot
+on:
+  push:
+    branches: [ main ] # This triggers the pipeline whenever you push to 'main'
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Pull the code from your repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Login to Azure using the secret you just created
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+     # 3. Deploy the Bicep file
+      - name: Deploy Infrastructure
+        uses: azure/arm-deploy@v2
+        with:
+          scope: resourcegroup # <--- This is the missing line that fixed the error
+          resourceGroupName: rg-healthbot-e8c755
+          template: ./iac/main.bicep
+          # Ensure your botName matches your previous deployment or Bicep param
+          parameters: botName=healthbot-e8c755
