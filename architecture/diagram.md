@@ -1,27 +1,42 @@
 # Architectural Deep Dive
 
 ```mermaid
-graph TD
-    subgraph "GitHub (Source & Automation)"
-        A[Developer / VS Code] -->|Push Code| B(GitHub Repository)
-        B -->|Trigger| C{GitHub Actions}
-        C -->|Authenticate| D[OIDC / Service Principal]
+graph TB
+    subgraph UI ["<b style='color:black'>User Interface</b>"]
+        USER[Patients/Users]
+        WEB[Web Chat Interface]
     end
-
-    subgraph "Azure Subscription (Target Environment)"
-        D -->|Deploy| E[Resource Group: rg-healthbot-e8c755]
-        subgraph "Resource Group"
-            E --> F[Azure AI Health Bot]
-            F --> G[Management Portal]
-        end
+    
+    subgraph Service ["<b style='color:black'>Azure Health Bot Service</b>"]
+        HEALTHBOT[Azure Health Bot Instance]
+        MEDICAL[Built-in Medical Database]
+        TRIAGE[Symptom Triage Engine]
+        SCENARIOS[Healthcare Scenarios]
     end
-
-    subgraph "End User"
-        H[Patient/User] -->|Web Chat| F
+    
+    subgraph Security ["<b style='color:black'>Compliance & Security</b>"]
+        HIPAA[HIPAA Compliance]
+        AUDIT[Audit Trails]
+        ENCRYPT[Data Encryption]
     end
-
-    %% Styling
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style F fill:#0072C6,stroke:#fff,stroke-width:2px,color:#fff
-    style C fill:#24292e,stroke:#fff,color:#fff
+    
+    %% Connections
+    USER --> WEB
+    WEB --> HEALTHBOT
+    HEALTHBOT --> MEDICAL
+    HEALTHBOT --> TRIAGE
+    HEALTHBOT --> SCENARIOS
+    HEALTHBOT --> HIPAA
+    HEALTHBOT --> AUDIT
+    HEALTHBOT --> ENCRYPT
+    
+    %% Node Styling
+    style HEALTHBOT fill:#FF9900,stroke:#333,stroke-width:2px,color:#fff
+    style HIPAA fill:#32CD32,stroke:#333,stroke-width:2px,color:#fff
+    style MEDICAL fill:#4169E1,stroke:#333,stroke-width:2px,color:#fff
+    
+    %% Box Styling
+    style UI fill:#f5f5f5,stroke:#d2d2d2,stroke-dasharray: 5 5
+    style Service fill:#f0f7ff,stroke:#0072c6,stroke-width:1px
+    style Security fill:#fff0f0,stroke:#a10000,stroke-width:1px
 ```
